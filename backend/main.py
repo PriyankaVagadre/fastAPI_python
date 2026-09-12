@@ -1,6 +1,22 @@
-def main():
-    print("Hello from backend!")
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
+app = FastAPI(
+    title="My FastAPI Application",
+    description="This is a sample FastAPI application with CORS middleware.",
+    version="1.0.0",
+    docs_url="/docs",
+    redoc_url="/redoc"
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all origins
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows all methods
+    allow_headers=["*"],  # Allows all headers
+)
 
 if __name__ == "__main__":
-    main()
+    import uvicorn
+    uvicon.run("main:app", host="0.0.0.0", port =8000, reload=True)
